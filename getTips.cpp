@@ -28,12 +28,3 @@ void initMap(unordered_map<int, string> &map) {
 	}
 }
 
-int main () {
-	unordered_map<int, string> healthTips;
-	initMap(healthTips);
-
-	string result = getHealthTip(healthTips, 2);
-	cout << result << endl;
-
-	return 1;
-}

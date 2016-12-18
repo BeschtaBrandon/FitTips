@@ -7,6 +7,9 @@
 ******************************************************************************
 */
 #include <iostream>
+#include <string>
+#include <unordered_map>
+#include "getTips.cpp"
 
 int main(){
 
@@ -49,10 +52,10 @@ int main(){
 			  << std::endl 
 			  << std::endl;
 	
-	std::cout << "[1] I have not exercised recently" << std::endl;
-	std::cout << "[2] I exercise about once a week"  << std::endl;
-	std::cout << "[3] I exercise a few times a week" << std::endl;
-	std::cout << "[4] I exercise almost every day"   << std::endl << std::endl;
+	std::cout << "[1] I exercise almost every day"   << std::endl;
+	std::cout << "[2] I exercise a few times a week" << std::endl;
+	std::cout << "[3] I exercise about once a week"  << std::endl;
+	std::cout << "[4] I have not exercise recently" << std::endl << std::endl;
 
 	std::cout << "Selection: ";
 	std::cin  >> exerciseHabitsSelection;
@@ -81,10 +84,17 @@ int main(){
 	std::cin  >> eatingHabitsSelection;
 	std::cout << std::endl;
 
-	int tipIndex =   heightSelection 
-				   + weightSelection
-				   + exerciseHabitsSelection
-				   + eatingHabitsSelection;
+	std::unordered_map<int, std::string> healthTips;
+	initMap(healthTips);
+	
+	int tipIndex = heightSelection + weightSelection
+							 + exerciseHabitsSelection
+							 + eatingHabitsSelection;
+
+	tipIndex = tipIndex % healthTips.size();
+
+	std::cout << "Your tip: " << getHealthTip(healthTips, tipIndex)
+			  << std::endl;
 
 	return 0;
 }
